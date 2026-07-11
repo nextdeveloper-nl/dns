@@ -75,6 +75,17 @@ class DnsServers extends Model
     /**
      @var array
      */
+    /**
+     * agent_api_key authenticates the pdns-agent over NATS - never expose it
+     * through the API, even if something bypasses the transformer's field
+     * whitelist (mirrors DnsProviderCredentials.api_token_enc's protection).
+     *
+     @var array
+     */
+    protected $hidden = [
+        'agent_api_key',
+    ];
+
     protected $casts = [
     'id' => 'integer',
     'iam_account_id' => 'integer',
