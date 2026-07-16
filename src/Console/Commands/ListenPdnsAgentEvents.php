@@ -132,12 +132,12 @@ class ListenPdnsAgentEvents extends Command
         $status       = $result['status']  ?? 'completed';
         $errorMessage = $result['message'] ?? null;
 
-        AgentCommandsService::update($command->id, [
+        UserHelper::runAsAdmin(fn () => AgentCommandsService::update($command->uuid, [
             'status'       => $status,
             'result'       => $result['output'] ?? [],
             'error'        => $errorMessage,
             'completed_at' => now(),
-        ]);
+        ]));
 
         $this->reconcileStatus($command, $status, $errorMessage);
 
