@@ -23,7 +23,7 @@ use NextDeveloper\Commons\Exceptions\NotAllowedException;
  */
 class AbstractDnsServersService
 {
-    public static function get(DnsServersQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
+    public static function get(?DnsServersQueryFilter $filter = null, array $params = []) : Collection|LengthAwarePaginator
     {
         $enablePaginate = array_key_exists('paginate', $params);
 
